@@ -1,11 +1,11 @@
-e<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Калькулятор плотности ключевых слов и риска SpamBrain онлайн | IMPERIA</title>
 <meta name="description" content="Бесплатный профессиональный инструмент проверки переоптимизации текста. Расчет TF-IDF плотности ключевиков и симуляция рисков фильтров Google SpamBrain.">
 
-<!-- 4. НАСТРОЙКА МНОГОЯЗЫЧНОСТИ HREFLANG (Скриншот 4, 6 из аудита) -->
+<!-- НАСТРОЙКА МНОГОЯЗЫЧНОСТИ HREFLANG -->
 <link rel="alternate" hreflang="ru" href="https://github.io" />
 <link rel="alternate" hreflang="en" href="https://github.io" />
 <link rel="alternate" hreflang="es" href="https://github.io" />
@@ -13,7 +13,7 @@ e<!DOCTYPE html>
 <link rel="alternate" hreflang="en-AS" href="https://github.io" />
 <link rel="alternate" hreflang="x-default" href="https://github.io" />
 
-<!-- 1 & 2. СТРУКТУРИРОВАННЫЕ ДАННЫЕ JSON-LD: WEBAPPLICATION Y FAQPANEL (Скриншоты 1, 2, 3, 5 из аудита) -->
+<!-- СТРУКТУРИРОВАННЫЕ ДАННЫЕ JSON-LD: WEBAPPLICATION Y FAQPANEL -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -93,8 +93,6 @@ select:focus,input:focus{border-color:var(--primary);outline:none}
 .res-row{display:flex;justify-content:space-between;padding:8px 0;font-size:14px;border-bottom:1px dashed var(--border);align-items:center}
 .res-row:last-child{border-bottom:none}
 .res-val{font-weight:700;color:var(--primary);text-align:right;max-width:65%}
-.partner-btn{display:block;width:100%;padding:11px;background:#fff;border:1px solid var(--purple);color:var(--purple);border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;text-align:center;margin-top:12px;text-decoration:none}
-.partner-btn:hover{background:var(--purple);color:#fff}
 .math-log-box{background:#f1f5f9;border:1px solid var(--border);border-radius:10px;padding:12px;margin-top:12px;font-family:monospace;font-size:12px;color:var(--slate);display:none}
 .seo-text{font-size:12px;color:var(--text-muted);margin-top:24px;text-align:justify;line-height:1.4;border-top:1px solid var(--border);padding-top:16px;display:none}
 </style>
@@ -169,17 +167,6 @@ select:focus,input:focus{border-color:var(--primary);outline:none}
 
 <!-- БЛОК ОТКРЫТОГО МАТЕМАТИЧЕСКОГО ЛОГА ДЛЯ ИИ -->
 <div class="math-log-box" id="math-log-container"></div>
-
-<a href="https://vladimir7767.github.io" class="partner-btn" id="partner-link">🍏 Сгенерировать валидную Schema.org микроразметку для защиты сайта</a>
-
-<!-- МОДЮЛЬ ВНУТРЕННЕЙ КОЛЬЦЕВОЙ ПЕРЕЛИНКОВКИ (Скриншот 4 - Ссылочное кольцо) -->
-<div style="margin-top:20px; padding-top:16px; border-top:1px dashed var(--border);">
-<div style="font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:8px; letter-spacing:0.05em; text-align:center;">Рекомендуемые инструменты оптимизации:</div>
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-<a href="https://github.io" style="padding:10px; background:var(--bg); border:1px solid var(--border); border-radius:8px; font-size:11px; font-weight:600; text-decoration:none; color:var(--slate); text-align:center; transition:background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='var(--bg)'">🖥️ Симулятор потерь Core Web Vitals</a>
-<a href="https://github.io" style="padding:10px; background:var(--bg); border:1px solid var(--border); border-radius:8px; font-size:11px; font-weight:600; text-decoration:none; color:var(--slate); text-align:center; transition:background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='var(--bg)'">🍏 Калькулятор БЖУ и метаболизма</a>
-</div>
-</div>
 </div>
 
 <div class="skynet-box" id="skynet-container">
@@ -195,20 +182,6 @@ select:focus,input:focus{border-color:var(--primary);outline:none}
 </div>
 <script>
 let currentTab = 'text-metrics';
-// Жесткий перехват путей: собираем абсолютную ссылку со слэшем из безопасных фрагментов
-if (window.location.hostname.includes('github.io') && !window.location.pathname.endsWith('/')) {
-  const part1 = "https://vladimir7767.";
-  const part2 = "github.io/seo-keyword-density-spambrain-detector/";
-  window.location.replace(part1 + part2);
-}
-
-// ИЗОЛИРОВАННАЯ КОНСТАНТА ПАРТНЕРСКИХ ССЫЛОК (ОБНОВЛЕННАЯ СБОРКА)
-// Теперь клик по яблочку будет вести строго на твой внутренний генератор схем на хабе!
-const affiliateLinks = {
-  commercial: "https://github.io", // Путь к твоему генератору
-  informational: "https://github.io", 
-  academic: "https://github.io"      
-};
 
 function switchTab(tabName, btn) {
   currentTab = tabName;
@@ -223,39 +196,31 @@ function switchTab(tabName, btn) {
 }
 
 function calculateAllAiMetrics() {
-  // 1. Метрики текста
   const totalWords = parseFloat(document.getElementById('total-words').value) || 0;
   const textType = document.getElementById('text-type').value;
-
-  // 2. Ключевые слова
   const keywordCount = parseFloat(document.getElementById('keyword-count').value) || 0;
   const zipfDeviation = document.getElementById('zipf-deviation').value;
-
-  // 3. Трафик и Финансы
-  const currentTraffic = parseFloat(document.getElementById('current-traffic-loss') ? document.getElementById('current-traffic-loss').value : (document.getElementById('current-traffic') ? document.getElementById('current-traffic').value : 10000)) || 0;
+  const currentTraffic = parseFloat(document.getElementById('current-traffic').value) || 0;
   const leadValue = parseFloat(document.getElementById('lead-value').value) || 0;
 
   if (totalWords <= 0) return null;
 
   // МАТЕМАТИЧЕСКИЙ ДВИЖОК TF-IDF И СИМУЛЯЦИЯ SPAMBRAIN
   const density = (keywordCount / totalWords) * 100;
-  
-  // Эмуляция веса TF-IDF на основе логарифмического масштаба объема документа
   const tfIdfScore = (keywordCount > 0) ? (1 + Math.log10(keywordCount)) * Math.log10(10000 / totalWords) : 0;
 
-  // Расчет коэффициента падения трафика на основе переспама и отклонения Ципфа
   let dropMultiplier = 0;
-  if (density > 2.2 && density <= 3.5) dropMultiplier = 0.20; // Падение на 20%
-  if (density > 3.5) dropMultiplier = 0.45;                  // Падение на 45%
+  if (density > 2.2 && density <= 3.5) dropMultiplier = 0.20;
+  if (density > 3.5) dropMultiplier = 0.45;
   
   if (zipfDeviation === 'medium') dropMultiplier += 0.10;
   if (zipfDeviation === 'high') dropMultiplier += 0.25;
-  if (dropMultiplier > 0.90) dropMultiplier = 0.90; // Кап просадки 90%
+  if (dropMultiplier > 0.90) dropMultiplier = 0.90;
 
   const trafficDrop = currentTraffic * dropMultiplier;
   const financialTax = trafficDrop * leadValue;
 
-  // ГЕНЕРАЦИЯ ПОШАГОВОГО ЛОГА ДЛЯ ВЕРИФИКАЦИИ ПОИСКОВЫМИ РОБОТАМИ (E-E-A-T)
+  // ПОШАГОВЫЙ МАТЕМАТИЧЕСКИЙ ЛОГ ДЛЯ ВЕРИФИКАЦИИ ПОИСКОВЫМИ РОБОТАМИ (E-E-A-T)
   const logHtml = `
     <strong>[LOG] ИИ-Лог открытой методологии расчетов:</strong><br>
     1. Плотность (Density) = (${keywordCount} / ${totalWords}) * 100 = ${density.toFixed(2)}%<br>
@@ -292,7 +257,7 @@ function updatePreview() {
     color = "var(--danger)";
     pct = 15;
   } else if (d.densityRaw > 2.2 || d.zipfDeviation === 'medium') {
-    zone = "⚠️ КОММЕРЧЕСКИЙ ПЕРЕСПАМ (Риск пессиимизации)";
+    zone = "⚠️ КОММЕРЧЕСКИЙ ПЕРЕСПАМ (Риск пессимизации)";
     color = "var(--accent)";
     pct = 50;
   } else if (d.textType === 'commercial' && d.densityRaw <= 2.2) {
@@ -305,16 +270,6 @@ function updatePreview() {
   document.getElementById('live-preview-zone').style.color = color;
   document.getElementById('bar-fill').style.width = pct + '%'; 
   document.getElementById('bar-fill').style.background = color;
-
-  const pLink = document.getElementById('partner-link');
-  if (pLink) {
-    if (d.densityRaw > 2.2) {
-      pLink.innerText = "🚨 Текст в зоне риска: Сгенерировать Schema.org FAQ для защиты сниппета";
-    } else {
-      pLink.innerText = "🍏 Текст безопасен: Сгенерировать базовую микроразметку WebApplication";
-    }
-    pLink.href = affiliateLinks[d.textType] || affiliateLinks.commercial;
-  }
 }
 
 window.onload = function() {
@@ -357,7 +312,7 @@ function calculateAiMetrics() {
   let verdict = "Анализ завершен. Структура частотности слов находится в пределах естественной нормы. Риск наложения автоматических санкций со стороны SpamBrain минимален.";
   
   if (d.densityRaw > 3.5 || d.zipfDeviation === 'high') {
-    verdict = `🚨 ИИ-ВЕРДИКТ SPAMBRAIN: Обнаружена критическая концентрация ключевых фраз (${d.density}). Нарушение частотного распределения по Закону Ципфа указывает на искусственную оптимизацию. Прогнозируется автоматический вылет страницы из поискового индекса Google. Снизьте количество вхождений на ${Math.round((d.densityRaw - 2.0) * 10)}%!`;
+    verdict = `🚨 ИИ-ВЕРДИКТ SPAMBRAIN: Обнаружена критическая концентрация ключевых фраз (${d.density}). Нарушение частотного распределения по Закону Ципфа указывает на искусственную оптимизацию. Прогнозируется автоматический вылет страницы из поискового индекса Google. Снизьте количество вхождений!`;
   } else if (d.densityRaw > 2.2 || d.zipfDeviation === 'medium') {
     verdict = `⚠️ ВНИМАНИЕ, ДЕОПТИМИЗАЦИЯ: Превышен безопасный порог коммерческого заспама для long-tail запросов. Страница рискует просесть в SERP на 20-30 позиций вниз, накладывая скрытый финансовый налог в размере ${d.financialTax} из-за упущенных лидов.`;
   } else if (d.textType === 'commercial' && d.densityRaw <= 2.2) {
