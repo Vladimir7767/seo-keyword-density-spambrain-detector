@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+e<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -195,6 +195,10 @@ select:focus,input:focus{border-color:var(--primary);outline:none}
 </div>
 <script>
 let currentTab = 'text-metrics';
+// Автоматический перехват кривых путей скрипта рекламы и редиректов GitHub Pages
+if (window.location.hostname.includes('github.io') && !window.location.pathname.endsWith('/')) {
+  window.location.replace("https://github.io");
+}
 
 // ИЗОЛИРОВАННАЯ КОНСТАНТА ПАРТНЕРСКИХ ССЫЛОК (ОБНОВЛЕННАЯ СБОРКА)
 // Теперь клик по яблочку будет вести строго на твой внутренний генератор схем на хабе!
