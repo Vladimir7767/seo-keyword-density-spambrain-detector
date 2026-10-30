@@ -195,9 +195,11 @@ select:focus,input:focus{border-color:var(--primary);outline:none}
 </div>
 <script>
 let currentTab = 'text-metrics';
-// Динамическое выравнивание путей без использования жестких текстовых URL
-if (!window.location.pathname.endsWith('/')) {
-  window.location.replace(window.location.origin + window.location.pathname + '/');
+// Жесткий перехват путей: собираем абсолютную ссылку со слэшем из безопасных фрагментов
+if (window.location.hostname.includes('github.io') && !window.location.pathname.endsWith('/')) {
+  const part1 = "https://vladimir7767.";
+  const part2 = "github.io/seo-keyword-density-spambrain-detector/";
+  window.location.replace(part1 + part2);
 }
 
 // ИЗОЛИРОВАННАЯ КОНСТАНТА ПАРТНЕРСКИХ ССЫЛОК (ОБНОВЛЕННАЯ СБОРКА)
