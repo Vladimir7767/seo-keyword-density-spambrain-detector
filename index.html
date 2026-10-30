@@ -196,11 +196,12 @@ select:focus,input:focus{border-color:var(--primary);outline:none}
 <script>
 let currentTab = 'text-metrics';
 
-// ИЗОЛИРОВАННАЯ КОНСТАНТА ПАРТНЕРСКИХ ССЫЛОК
+// ИЗОЛИРОВАННАЯ КОНСТАНТА ПАРТНЕРСКИХ ССЫЛОК (ОБНОВЛЕННАЯ СБОРКА)
+// Теперь клик по яблочку будет вести строго на твой внутренний генератор схем на хабе!
 const affiliateLinks = {
-  commercial: "https://github.io", // Ссылка на генератор схем под коммерцию
-  informational: "https://github.io", // Под инфо-статьи
-  academic: "https://github.io"      // Под тех-доки
+  commercial: "https://github.io", // Путь к твоему генератору
+  informational: "https://github.io", 
+  academic: "https://github.io"      
 };
 
 function switchTab(tabName, btn) {
